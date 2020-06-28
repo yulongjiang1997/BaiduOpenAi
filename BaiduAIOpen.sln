@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaiduAIOpen", "BaiduAIOpen\BaiduAIOpen.csproj", "{11291643-C68F-4929-96C3-BDA1C64DB532}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baidu.AI.Ocr", "WrittenWords\Baidu.AI.Ocr.csproj", "{AC349AE6-9078-455F-8E38-9F8C87CFDBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTestProject1", "NUnitTestProject1\NUnitTestProject1.csproj", "{693E268A-78EB-4868-8C62-01D1ED7F75B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baidu.AI.Common", "Common\Baidu.AI.Common.csproj", "{5D25D7A3-4A2A-45CF-955A-426680E707B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11291643-C68F-4929-96C3-BDA1C64DB532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11291643-C68F-4929-96C3-BDA1C64DB532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11291643-C68F-4929-96C3-BDA1C64DB532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11291643-C68F-4929-96C3-BDA1C64DB532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC349AE6-9078-455F-8E38-9F8C87CFDBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC349AE6-9078-455F-8E38-9F8C87CFDBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC349AE6-9078-455F-8E38-9F8C87CFDBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC349AE6-9078-455F-8E38-9F8C87CFDBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{693E268A-78EB-4868-8C62-01D1ED7F75B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{693E268A-78EB-4868-8C62-01D1ED7F75B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{693E268A-78EB-4868-8C62-01D1ED7F75B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{693E268A-78EB-4868-8C62-01D1ED7F75B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D25D7A3-4A2A-45CF-955A-426680E707B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D25D7A3-4A2A-45CF-955A-426680E707B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D25D7A3-4A2A-45CF-955A-426680E707B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D25D7A3-4A2A-45CF-955A-426680E707B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {174126FF-B07E-4719-8A41-85A8A3B5A1B5}
+	EndGlobalSection
+EndGlobal
