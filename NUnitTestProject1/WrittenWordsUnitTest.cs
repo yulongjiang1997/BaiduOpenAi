@@ -1,4 +1,4 @@
- 
+
 using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
@@ -29,7 +29,8 @@ namespace NUnitTestProject1
                 var zm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\1.jpg";
                 var fm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\2.jpg";
                 var cp = @"C:\Users\Administrator\Desktop\1.jpg";
-                var result = writtenWords.LocalImageAccurateAnalysis(cp);
+                var result = writtenWords.LocalImageAnalysis(@"C:\Users\Administrator\Desktop\timg.jpg",new Baidu.AI.Common.Dto.Ocr.ImageAnalysisInput {  LanguageType= Baidu.AI.Common.Enum.Orc.LanguageType.CHN_ENG, DetectLanguage=true,  DetectDirection=true});
+                var ss = result.Data.ToString();
             }
             catch (Exception ex)
             {
