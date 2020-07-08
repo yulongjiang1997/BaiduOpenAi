@@ -1,8 +1,7 @@
-﻿using Baidu.AI.Common.Dto.Ocr;
+﻿using Baidu.AI.Common.Dto.Ocr.ImageAccurateAnalysis;
+using Baidu.AI.Common.Dto.Ocr.ImageAnalysis;
 using Baidu.AI.Common.Extend;
-using Baidu.Aip.Ocr;
 using BaiduOcr.Common.Dto;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -59,7 +58,7 @@ namespace Baidu.AI.Ocr
             {
                 // 调用通用文字识别, 图片参数为本地图片
                 var options = parmeter == null ? null : ClassToDictionary<ImageAnalysisInput>.GetDictionary(parmeter);
-                result.Data = JsonConvert.DeserializeObject<ImageAnalysisReturn>(client.GeneralBasic(image, options).ToString());
+                result.Data = client.GeneralBasic(image, options).ToModels<ImageAnalysisReturn>();
             }
             catch (Exception ex)
             {
@@ -74,13 +73,15 @@ namespace Baidu.AI.Ocr
         /// </summary>
         /// <param name="imageUrl">远程图片URL</param>
         /// <param name="options">参数列表</param>
-        public ResultBase<JObject> RemoteImageAnalysis(string imageUrl, Dictionary<string, object> options = null)
+        public ResultBase<ImageAnalysisReturn> RemoteImageAnalysis(string imageUrl, ImageAnalysisInput parmeter = null)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<ImageAnalysisReturn>();
             try
             {
-                // 调用通用文字识别, 图片参数为本地图片
-                result.Data = client.GeneralBasicUrl(imageUrl, options);
+                // 调用通用文字识别, 图片参数为远程图片
+                var options = parmeter == null ? null : ClassToDictionary<ImageAnalysisInput>.GetDictionary(parmeter);
+                // 调用通用文字识别, 图片参数为远程图片
+                result.Data = client.GeneralBasicUrl(imageUrl, options).ToModels<ImageAnalysisReturn>();
             }
             catch (Exception ex)
             {
@@ -94,14 +95,14 @@ namespace Baidu.AI.Ocr
         /// 本地图片分析 高精度版
         /// </summary>
         /// <returns></returns>
-        public ResultBase<JObject> LocalImageAccurateAnalysis(string imagePath, Dictionary<string, object> options = null)
+        public ResultBase<ImageAccurateAnalysisReturn> LocalImageAccurateAnalysis(string imagePath, ImageAccurateAnalysisInput parmeter = null)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<ImageAccurateAnalysisReturn>();
             try
             {
                 var image = File.ReadAllBytes(imagePath);
                 // 调用通用文字识别（高精度版）
-                result = LocalImageAccurateAnalysis(image, options);
+                result = LocalImageAccurateAnalysis(image, parmeter);
             }
             catch (Exception ex)
             {
@@ -115,13 +116,14 @@ namespace Baidu.AI.Ocr
         /// 本地图片分析 高精度版
         /// </summary>
         /// <returns></returns>
-        public ResultBase<JObject> LocalImageAccurateAnalysis(byte[] image, Dictionary<string, object> options = null)
+        public ResultBase<ImageAccurateAnalysisReturn> LocalImageAccurateAnalysis(byte[] image, ImageAccurateAnalysisInput parmeter = null)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<ImageAccurateAnalysisReturn>();
             try
             {
+                var options = parmeter == null ? null : ClassToDictionary<ImageAccurateAnalysisInput>.GetDictionary(parmeter);
                 // 调用通用文字识别（高精度版）
-                result.Data = client.AccurateBasic(image, options);
+                result.Data = client.AccurateBasic(image, options).ToModels<ImageAccurateAnalysisReturn>();
             }
             catch (Exception ex)
             {

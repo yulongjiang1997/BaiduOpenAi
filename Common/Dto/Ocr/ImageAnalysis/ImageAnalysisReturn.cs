@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Baidu.AI.Common.Dto.Ocr
+namespace Baidu.AI.Common.Dto.Ocr.ImageAnalysis
 {
     public class ImageAnalysisReturn
     {
