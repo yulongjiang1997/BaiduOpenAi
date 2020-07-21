@@ -27,10 +27,11 @@ namespace NUnitTestProject1
                 var SECRET_KEY = "9lMQykOsWQtYa3z1LnbUhb2UAgQX8XSE";
 
                 var writtenWords = new Baidu.AI.Ocr.BaiduOcr(API_KEY, SECRET_KEY);
-               // var zm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\1.jpg";
-               // var fm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\2.jpg";
-               // var cp = @"C:\Users\Administrator\Desktop\1.jpg";
-                var result = writtenWords.LocalImageAccurateAnalysis(@"C:\Users\Administrator\Desktop\timg.jpg", new ImageAccurateAnalysisInput {  DetectDirection=true, Probability=true, });
+                // var zm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\1.jpg";
+                // var fm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\2.jpg";
+                // var cp = @"C:\Users\Administrator\Desktop\1.jpg";
+                var result = writtenWords.IdCardFront(@"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\1.jpg", new Baidu.AI.Common.Dto.Ocr.IdCrad.IdcardInput { DetectDirection = true,  DetectRisk = true, });
+                var result1 = writtenWords.IdCardBack(@"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\2.jpg", new Baidu.AI.Common.Dto.Ocr.IdCrad.IdcardInput { DetectDirection = true,  DetectRisk = true, });
                 var ss = result.Data.ToString();
             }
             catch (Exception ex)

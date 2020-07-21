@@ -1,4 +1,6 @@
-﻿using Baidu.AI.Common.Dto.Ocr.ImageAccurateAnalysis;
+﻿using Baidu.AI.Common.Dto.Ocr;
+using Baidu.AI.Common.Dto.Ocr.IdCrad;
+using Baidu.AI.Common.Dto.Ocr.ImageAccurateAnalysis;
 using Baidu.AI.Common.Dto.Ocr.ImageAnalysis;
 using Baidu.AI.Common.Extend;
 using BaiduOcr.Common.Dto;
@@ -58,7 +60,7 @@ namespace Baidu.AI.Ocr
             {
                 // 调用通用文字识别, 图片参数为本地图片
                 var options = parmeter == null ? null : ClassToDictionary<ImageAnalysisInput>.GetDictionary(parmeter);
-                result.Data = client.GeneralBasic(image, options).ToModels<ImageAnalysisReturn>();
+                result.Data = client.GeneralBasic(image, options).ToModel<ImageAnalysisReturn>();
             }
             catch (Exception ex)
             {
@@ -81,7 +83,7 @@ namespace Baidu.AI.Ocr
                 // 调用通用文字识别, 图片参数为远程图片
                 var options = parmeter == null ? null : ClassToDictionary<ImageAnalysisInput>.GetDictionary(parmeter);
                 // 调用通用文字识别, 图片参数为远程图片
-                result.Data = client.GeneralBasicUrl(imageUrl, options).ToModels<ImageAnalysisReturn>();
+                result.Data = client.GeneralBasicUrl(imageUrl, options).ToModel<ImageAnalysisReturn>();
             }
             catch (Exception ex)
             {
@@ -123,7 +125,7 @@ namespace Baidu.AI.Ocr
             {
                 var options = parmeter == null ? null : ClassToDictionary<ImageAccurateAnalysisInput>.GetDictionary(parmeter);
                 // 调用通用文字识别（高精度版）
-                result.Data = client.AccurateBasic(image, options).ToModels<ImageAccurateAnalysisReturn>();
+                result.Data = client.AccurateBasic(image, options).ToModel<ImageAccurateAnalysisReturn>();
             }
             catch (Exception ex)
             {
@@ -361,14 +363,14 @@ namespace Baidu.AI.Ocr
         /// <param name="isFront">是否正面 true 正面  false 反面</param>
         /// <param name="options">参数</param>
         /// <returns></returns>
-        public ResultBase<JObject> Idcard(string imagePath, bool isFront, Dictionary<string, object> options = null)
+        private ResultBase<T> IdCard<T>(string imagePath, bool isFront, IdcardInput parmeter = null)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<T>();
             try
             {
                 var image = File.ReadAllBytes(imagePath);
                 // 带参数调用身份证识别
-                result = Idcard(image, isFront, options);
+                result = IdCard<T>(image, isFront, parmeter);
             }
             catch (Exception ex)
             {
@@ -385,14 +387,15 @@ namespace Baidu.AI.Ocr
         /// <param name="isFront">是否正面 true 正面  false 反面</param>
         /// <param name="options">参数</param>
         /// <returns></returns>
-        public ResultBase<JObject> Idcard(byte[] image, bool isFront, Dictionary<string, object> options = null)
+        private ResultBase<T> IdCard<T>(byte[] image, bool isFront, IdcardInput parmeter = null)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<T>();
             try
             {
                 var idCardSide = isFront ? "front" : "back";
+                var options = parmeter == null ? null : ClassToDictionary<IdcardInput>.GetDictionary(parmeter);
                 // 带参数调用身份证识别
-                result.Data = client.Idcard(image, idCardSide, options);
+                result.Data = client.Idcard(image, idCardSide, options).ToModel<T>();
             }
             catch (Exception ex)
             {
@@ -400,6 +403,50 @@ namespace Baidu.AI.Ocr
                 result.ErrorMessage = ex.Message;
             }
             return result;
+        }
+
+        /// <summary>
+        /// 身份证正面识别
+        /// </summary>
+        /// <param name="imagePath"></param>
+        /// <param name="parmeter"></param>
+        /// <returns></returns>
+        public ResultBase<IdCardFrontReturn> IdCardFront(string imagePath, IdcardInput parmeter = null)
+        {
+            return IdCard<IdCardFrontReturn>(imagePath, true, parmeter);
+        } 
+
+        /// <summary>
+        /// 身份证正面识别
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="parmeter"></param>
+        /// <returns></returns>
+        public ResultBase<IdCardFrontReturn> IdCardFront(byte[] image, IdcardInput parmeter = null)
+        {
+            return IdCard<IdCardFrontReturn>(image, true, parmeter);
+        }
+
+        /// <summary>
+        /// 身份证反面识别
+        /// </summary>
+        /// <param name="imagePath"></param>
+        /// <param name="parmeter"></param>
+        /// <returns></returns>
+        public ResultBase<IdCardBackReturn> IdCardBack(string imagePath, IdcardInput parmeter = null)
+        {
+            return IdCard<IdCardBackReturn>(imagePath, false, parmeter);
+        }
+
+        /// <summary>
+        /// 身份证反面识别
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="parmeter"></param>
+        /// <returns></returns>
+        public ResultBase<IdCardBackReturn> IdCardBack(byte[] image, IdcardInput parmeter = null)
+        {
+            return IdCard<IdCardBackReturn>(image, false, parmeter);
         }
 
         /// <summary>

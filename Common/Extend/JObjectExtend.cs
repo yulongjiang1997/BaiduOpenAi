@@ -8,7 +8,7 @@ namespace Baidu.AI.Common.Extend
 {
     public static class JObjectExtend
     {
-        public static T ToModels<T>(this JObject input)
+        public static T ToModel<T>(this JObject input)
         {
             return JsonConvert.DeserializeObject<T>(input.ToString());
         }
