@@ -1,4 +1,5 @@
 ﻿using Baidu.AI.Common.Dto.Ocr;
+using Baidu.AI.Common.Dto.Ocr.BankCard;
 using Baidu.AI.Common.Dto.Ocr.IdCrad;
 using Baidu.AI.Common.Dto.Ocr.ImageAccurateAnalysis;
 using Baidu.AI.Common.Dto.Ocr.ImageAnalysis;
@@ -414,7 +415,7 @@ namespace Baidu.AI.Ocr
         public ResultBase<IdCardFrontReturn> IdCardFront(string imagePath, IdcardInput parmeter = null)
         {
             return IdCard<IdCardFrontReturn>(imagePath, true, parmeter);
-        } 
+        }
 
         /// <summary>
         /// 身份证正面识别
@@ -454,9 +455,9 @@ namespace Baidu.AI.Ocr
         /// </summary>
         /// <param name="imagePath"></param>
         /// <returns></returns>
-        public ResultBase<JObject> Bankcard(string imagePath)
+        public ResultBase<BankCardReturn> Bankcard(string imagePath)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<BankCardReturn>();
             try
             {
                 var image = File.ReadAllBytes(imagePath);
@@ -476,13 +477,13 @@ namespace Baidu.AI.Ocr
         /// </summary>
         /// <param name="imagePath"></param>
         /// <returns></returns>
-        public ResultBase<JObject> Bankcard(byte[] image)
+        public ResultBase<BankCardReturn> Bankcard(byte[] image)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<BankCardReturn>();
             try
             {
                 // 调用银行卡识别，可能会抛出网络等异常，请使用try/catch捕获
-                result.Data = client.Bankcard(image);
+                result.Data = client.Bankcard(image).ToModel<BankCardReturn>();
             }
             catch (Exception ex)
             {
@@ -889,4 +890,5 @@ namespace Baidu.AI.Ocr
             return result;
         }
     }
+
 }

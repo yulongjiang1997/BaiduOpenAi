@@ -30,8 +30,7 @@ namespace NUnitTestProject1
                 // var zm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\1.jpg";
                 // var fm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\2.jpg";
                 // var cp = @"C:\Users\Administrator\Desktop\1.jpg";
-                var result = writtenWords.IdCardFront(@"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\1.jpg", new Baidu.AI.Common.Dto.Ocr.IdCrad.IdcardInput { DetectDirection = true,  DetectRisk = true, });
-                var result1 = writtenWords.IdCardBack(@"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\2.jpg", new Baidu.AI.Common.Dto.Ocr.IdCrad.IdcardInput { DetectDirection = true,  DetectRisk = true, });
+                var result = writtenWords.Bankcard(@"C:\Users\Administrator\Desktop\timg.jpg");
                 var ss = result.Data.ToString();
             }
             catch (Exception ex)
