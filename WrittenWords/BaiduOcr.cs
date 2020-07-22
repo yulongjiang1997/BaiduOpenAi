@@ -1,5 +1,6 @@
 ﻿using Baidu.AI.Common.Dto.Ocr;
 using Baidu.AI.Common.Dto.Ocr.BankCard;
+using Baidu.AI.Common.Dto.Ocr.DrivingLicense;
 using Baidu.AI.Common.Dto.Ocr.IdCrad;
 using Baidu.AI.Common.Dto.Ocr.ImageAccurateAnalysis;
 using Baidu.AI.Common.Dto.Ocr.ImageAnalysis;
@@ -499,14 +500,14 @@ namespace Baidu.AI.Ocr
         /// <param name="imagePath"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public ResultBase<JObject> DrivingLicense(string imagePath, Dictionary<string, object> options = null)
+        public ResultBase<DrivingLicenseReturn> DrivingLicense(string imagePath, DrivingLicenseInput parmeter)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<DrivingLicenseReturn>();
             try
             {
                 var image = File.ReadAllBytes(imagePath);
                 // 带参数调用驾驶证识别
-                result = DrivingLicense(image, options);
+                result = DrivingLicense(image, parmeter);
             }
             catch (Exception ex)
             {
@@ -522,13 +523,15 @@ namespace Baidu.AI.Ocr
         /// <param name="image"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public ResultBase<JObject> DrivingLicense(byte[] image, Dictionary<string, object> options = null)
+        public ResultBase<DrivingLicenseReturn> DrivingLicense(byte[] image, DrivingLicenseInput parmeter)
         {
-            var result = new ResultBase<JObject>();
+            var result = new ResultBase<DrivingLicenseReturn>();
             try
             {
+                var options = parmeter == null ? null : ClassToDictionary<DrivingLicenseInput>.GetDictionary(parmeter);
+ 
                 // 带参数调用驾驶证识别
-                result.Data = client.DrivingLicense(image, options);
+                result.Data = client.DrivingLicense(image, options).ToModel<DrivingLicenseReturn>();
             }
             catch (Exception ex)
             {
