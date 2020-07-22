@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaiduAIOpen", "BaiduAIOpen\BaiduAIOpen.csproj", "{11291643-C68F-4929-96C3-BDA1C64DB532}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baidu.AI.Ocr", "WrittenWords\Baidu.AI.Ocr.csproj", "{AC349AE6-9078-455F-8E38-9F8C87CFDBB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baidu.AI.Ocr", "Ocr\Baidu.AI.Ocr.csproj", "{AC349AE6-9078-455F-8E38-9F8C87CFDBB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTestProject1", "NUnitTestProject1\NUnitTestProject1.csproj", "{693E268A-78EB-4868-8C62-01D1ED7F75B0}"
 EndProject
