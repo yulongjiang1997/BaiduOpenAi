@@ -8,7 +8,7 @@
 优化身份证和驾驶证识别方法出参入参</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>yulongjiang</Authors>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <PackageReleaseNotes>更新高精度识别入参和出参 更改为C#实体</PackageReleaseNotes>
   </PropertyGroup>
 
