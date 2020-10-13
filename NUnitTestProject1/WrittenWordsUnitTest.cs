@@ -31,8 +31,14 @@ namespace NUnitTestProject1
                 // var fm = @"C:\Users\Administrator\Documents\Tencent Files\1209026461\FileRecv\MobileFile\2.jpg";
                 // var cp = @"C:\Users\Administrator\Desktop\1.jpg";
 
-                var result = writtenWords.DrivingLicense(@"C:\Users\Administrator\Desktop\1.jpg", new Baidu.AI.Common.Dto.Ocr.DrivingLicense.DrivingLicenseInput { DetectDirection = true });
-                var ss = result.Data.ToString();
+                var result3 = writtenWords.VehicleLicense(@"C:\Users\Administrator\Desktop\vin\lALPDiCpsTJ8LnXNCSTNBDg_1080_2340.png");
+
+                var result = writtenWords.GetVinCode(@"C:\Users\Administrator\Desktop\vin\47dac3de23ff80e2.jpg");
+                Console.WriteLine("47dac3de23ff80e2----" + result.words_result[0].words);
+                var result1 = writtenWords.GetVinCode(@"C:\Users\Administrator\Desktop\vin\9198e874f0bf777d.jpg");
+                Console.WriteLine("9198e874f0bf777d----" + result1.words_result[0].words);
+                var result2 = writtenWords.GetVinCode(@"C:\Users\Administrator\Desktop\vin\3072998c66a61a7.jpg");
+                Console.WriteLine("3072998c66a61a7----" + result2.words_result[0].words);
             }
             catch (Exception ex)
             {

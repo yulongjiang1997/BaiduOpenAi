@@ -4,6 +4,7 @@ using Baidu.AI.Common.Dto.Ocr.DrivingLicense;
 using Baidu.AI.Common.Dto.Ocr.IdCrad;
 using Baidu.AI.Common.Dto.Ocr.ImageAccurateAnalysis;
 using Baidu.AI.Common.Dto.Ocr.ImageAnalysis;
+using Baidu.AI.Common.Dto.Ocr.VinOcr;
 using Baidu.AI.Common.Extend;
 using BaiduOcr.Common.Dto;
 using Newtonsoft.Json.Linq;
@@ -17,6 +18,11 @@ namespace Baidu.AI.Ocr
     {
         private Baidu.Aip.Ocr.Ocr client = null;
 
+        public (string, DateTime) Token = ("", DateTime.Now);
+
+        public string ak;
+        public string sk;
+
         /// <summary>
         /// 
         /// </summary>
@@ -27,6 +33,19 @@ namespace Baidu.AI.Ocr
         {
             client = new Baidu.Aip.Ocr.Ocr(apiKey, secretKey);
             client.Timeout = requestTimeout;  // 修改超时时间
+            ak = apiKey;
+            sk = secretKey;
+        }
+
+        public string GetToken()
+        {
+            if (Token.Item2 <= DateTime.Now)
+            {
+                var result = HttpExtend.Get<dynamic, dynamic>($"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={ak}&client_secret={sk}").Result;
+                Token.Item1 = result.access_token;
+                Token.Item2 = DateTime.Now.AddSeconds((double)result.expires_in);
+            }
+            return Token.Item1;
         }
 
         /// <summary>
@@ -529,7 +548,7 @@ namespace Baidu.AI.Ocr
             try
             {
                 var options = parmeter == null ? null : ClassToDictionary<DrivingLicenseInput>.GetDictionary(parmeter);
- 
+
                 // 带参数调用驾驶证识别
                 result.Data = client.DrivingLicense(image, options).ToModel<DrivingLicenseReturn>();
             }
@@ -891,6 +910,17 @@ namespace Baidu.AI.Ocr
                 result.ErrorMessage = ex.Message;
             }
             return result;
+        }
+
+        public VinReturn GetVinCode(byte[] image)
+        {
+            return new VehicleOcrApi().GetVinCode(image, GetToken()).ToModel<VinReturn>();
+        }
+
+        public VinReturn GetVinCode(string imagePath)
+        {
+            var image = File.ReadAllBytes(imagePath);
+            return GetVinCode(image);
         }
     }
 

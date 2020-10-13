@@ -12,5 +12,10 @@ namespace Baidu.AI.Common.Extend
         {
             return JsonConvert.DeserializeObject<T>(input.ToString());
         }
+
+        public static T ToModel<T>(this string input)
+        {
+            return JsonConvert.DeserializeObject<T>(input);
+        }
     }
 }
